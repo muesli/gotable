@@ -7,17 +7,14 @@ Go helper to print a table of data to stdout.
 
 Make sure you have a working Go environment. Follow the [Go install instructions](http://golang.org/doc/install.html).
 
-First of all you need to checkout the source code:
+To install gotable, simply run:
 
     go get github.com/muesli/gotable
+
+To compile it from source:
+
     cd $GOPATH/src/github.com/muesli/gotable
-
-Now we need to get the required dependencies:
-
-    go get -v
-
-Let's build it:
-
+    go get -u -v
     go build
 
 ## Example
