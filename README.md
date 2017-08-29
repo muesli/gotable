@@ -52,4 +52,4 @@ Pineapple                                 delicious                  pineappley
 
 API docs can be found [here](http://godoc.org/github.com/muesli/gotable).
 
-Continuous integration: [![Build Status](https://secure.travis-ci.org/muesli/gotable.png)](http://travis-ci.org/muesli/gotable)
+[![Build Status](https://travis-ci.org/muesli/gotable.svg?branch=master)](https://travis-ci.org/muesli/gotable)
