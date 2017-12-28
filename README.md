@@ -51,6 +51,5 @@ Pineapple                                 delicious                  pineappley
 
 ## Development
 
-API docs can be found [here](http://godoc.org/github.com/muesli/gotable).
-
+[![GoDoc](https://godoc.org/github.com/golang/gddo?status.svg)](https://godoc.org/github.com/muesli/gotable)
 [![Build Status](https://travis-ci.org/muesli/gotable.svg?branch=master)](https://travis-ci.org/muesli/gotable)
