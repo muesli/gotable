@@ -2,7 +2,9 @@ package gotable
 
 import (
 	"fmt"
+	"io"
 	"math"
+	"os"
 	"strconv"
 	"strings"
 )
@@ -14,15 +16,22 @@ type Table struct {
 	rows      [][]interface{}
 	summary   []interface{}
 	emptyText string
+	writer    io.Writer
 }
 
 // NewTable returns a new table
 func NewTable(headers []string, widths []int64, emptyText string) Table {
+	return NewTableWithWriter(headers, widths, emptyText, os.Stdout)
+}
+
+// NewTable returns a new table
+func NewTableWithWriter(headers []string, widths []int64, emptyText string, writer io.Writer) Table {
 	return Table{
 		headers:   headers,
 		widths:    widths,
 		rows:      [][]interface{}{},
 		emptyText: emptyText,
+		writer:    writer,
 	}
 }
 
@@ -67,15 +76,23 @@ func (t *Table) Print() error {
 	}
 
 	// print header
-	fmt.Printf(format+"\n", ifaceify(t.headers)...)
-	fmt.Println(strings.Repeat("-", int(totalWidth)))
+	if _, err := fmt.Fprintf(t.writer, format+"\n", ifaceify(t.headers)...); err != nil {
+		return err
+	}
+	if _, err := fmt.Fprintf(t.writer, strings.Repeat("-", int(totalWidth))); err != nil {
+		return err
+	}
 
 	// print rows
 	for _, row := range t.rows {
-		fmt.Printf(format+"\n", row...)
+		if _, err := fmt.Fprintf(t.writer, format+"\n", row...); err != nil {
+			return err
+		}
 	}
 	if len(t.rows) == 0 {
-		fmt.Println(t.emptyText)
+		if _, err := fmt.Fprintf(t.writer, t.emptyText); err != nil {
+			return err
+		}
 	} else if len(t.summary) > 0 {
 		t.PrintSummary()
 	}
@@ -98,10 +115,14 @@ func (t *Table) PrintSummary() error {
 	}
 
 	// print divider
-	fmt.Println(strings.Repeat("-", int(totalWidth)))
+	if _, err := fmt.Fprintf(t.writer, strings.Repeat("-", int(totalWidth))); err != nil {
+		return err
+	}
 
 	// print summary
-	fmt.Printf(format+"\n", t.summary...)
+	if _, err := fmt.Fprintf(t.writer, format+"\n", t.summary...); err != nil {
+		return err
+	}
 
 	return nil
 }
