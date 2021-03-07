@@ -79,7 +79,7 @@ func (t *Table) Print() error {
 	if _, err := fmt.Fprintf(t.writer, format+"\n", ifaceify(t.headers)...); err != nil {
 		return err
 	}
-	if _, err := fmt.Fprintf(t.writer, strings.Repeat("-", int(totalWidth))); err != nil {
+	if _, err := fmt.Fprintf(t.writer, strings.Repeat("-", int(totalWidth))+"\n"); err != nil {
 		return err
 	}
 
@@ -90,7 +90,7 @@ func (t *Table) Print() error {
 		}
 	}
 	if len(t.rows) == 0 {
-		if _, err := fmt.Fprintf(t.writer, t.emptyText); err != nil {
+		if _, err := fmt.Fprintf(t.writer, t.emptyText+"\n"); err != nil {
 			return err
 		}
 	} else if len(t.summary) > 0 {
@@ -115,7 +115,7 @@ func (t *Table) PrintSummary() error {
 	}
 
 	// print divider
-	if _, err := fmt.Fprintf(t.writer, strings.Repeat("-", int(totalWidth))); err != nil {
+	if _, err := fmt.Fprintf(t.writer, strings.Repeat("-", int(totalWidth))+"\n"); err != nil {
 		return err
 	}
 
