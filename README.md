@@ -1,22 +1,16 @@
-gotable
-=======
+# gotable
 
-Go helper to print a table of data to stdout.
+[![Build Status](https://github.com/muesli/gotable/workflows/build/badge.svg)](https://github.com/muesli/gotable/actions)
+[![Go ReportCard](http://goreportcard.com/badge/muesli/gotable)](http://goreportcard.com/report/muesli/gotable)
+[![GoDoc](https://godoc.org/github.com/golang/gddo?status.svg)](https://pkg.go.dev/github.com/muesli/gotable)
+
+Go helper to print a table of data to stdout or an io.Writer.
 
 ## Installation
 
-Make sure you have a working Go environment (Go 1.2 or higher is required).
-See the [install instructions](http://golang.org/doc/install.html).
-
-To install gotable, simply run:
-
-    go get github.com/muesli/gotable
-
-To compile it from source:
-
-    cd $GOPATH/src/github.com/muesli/gotable
-    go get -u -v
-    go build
+```bash
+go get github.com/muesli/gotable
+```
 
 ## Example
 
@@ -48,8 +42,3 @@ Banana                                    very                           yellow
 Pear                                      much                          depends
 Pineapple                                 delicious                  pineappley
 ```
-
-## Development
-
-[![GoDoc](https://godoc.org/github.com/golang/gddo?status.svg)](https://godoc.org/github.com/muesli/gotable)
-[![Build Status](https://travis-ci.org/muesli/gotable.svg?branch=master)](https://travis-ci.org/muesli/gotable)
