@@ -7,6 +7,8 @@ import (
 	"os"
 	"strconv"
 	"strings"
+
+	"github.com/mattn/go-runewidth"
 )
 
 // Table is a helper for printing data in sheet form
@@ -38,9 +40,10 @@ func NewTableWithWriter(headers []string, widths []int64, emptyText string, writ
 func (t *Table) checkWidths(row []interface{}) {
 	for col, v := range row {
 		s := fmt.Sprint(v)
-		if float64(len(s)) > math.Abs(float64(t.widths[col])) {
+		sl := runewidth.StringWidth(s)
+		if float64(sl) > math.Abs(float64(t.widths[col])) {
 			// the added value doesn't fit in this column, let's make it bigger
-			l := int64(len(s))
+			l := int64(sl)
 			if t.widths[col] < 0 {
 				l *= -1
 			}
